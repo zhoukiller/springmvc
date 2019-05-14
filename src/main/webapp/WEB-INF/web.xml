@@ -1,0 +1,87 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+
+    <filter>
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--    注册一个前端控制器
+            DispatcherServlet
+    -->
+    <servlet>
+        <!--
+                这里sertvlet的名字是有讲究的，
+                如果我们不去修改spring配置文件默认的位置，
+                那么springmvc会去web-inf下面找springmvc-servlet.xml的文件
+        -->
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--        指定配置文件的名字   -->
+<!--        <init-param>-->
+<!--            <param-name>namespace</param-name>-->
+<!--            <param-value>mvc</param-value>-->
+<!--        </init-param>-->
+        <!--        配置文件的位置     -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvc.xml</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <!--        这里统一写/-->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!--    方法3. 配置静态资源     -->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>default</servlet-name>-->
+<!--        <url-pattern>*.html</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>default</servlet-name>-->
+<!--        <url-pattern>*.jpg</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>default</servlet-name>-->
+<!--        <url-pattern>*.png</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>default</servlet-name>-->
+<!--        <url-pattern>*.css</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>default</servlet-name>-->
+<!--        <url-pattern>*.js</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+
+
+    <!--    设置非get post访问过滤器    -->
+    <filter>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
