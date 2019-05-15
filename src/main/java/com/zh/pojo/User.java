@@ -1,47 +1,31 @@
 package com.zh.pojo;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
-
 public class User {
     private String name;
 
-    private String password;
+    private String pwd;
 
     public String getName() {
         return name;
     }
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date birth;
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Date getBirth() {
-        return birth;
-    }
-
-    public void setBirth(Date birth) {
-        this.birth = birth;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", birth=" + birth +
+                ", pwd='" + pwd + '\'' +
                 '}';
     }
 }

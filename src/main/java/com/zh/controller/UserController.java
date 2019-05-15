@@ -1,72 +1,28 @@
 package com.zh.controller;
 
+import com.zh.constant.ResponseCode;
 import com.zh.pojo.User;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
-//    @InitBinder
-//    public void initBinder(WebDataBinder binder) {
-//        SimpleDateFormat dateFormat3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        SimpleDateFormat dateFormat1 = new SimpleDateFormat("HH:mm:ss");
-//        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
-//        dateFormat1.setLenient(false);
-//        dateFormat2.setLenient(false);
-//        dateFormat3.setLenient(false);
-//        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat1, false));
-//        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat2, false));
-//        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat3, false));
-//    }
-
-
-//    @ModelAttribute("u2")
-//    public User init() {
-//        System.out.println("init....");
-//        User u = new User();
-//        u.setName("周宏");
-//        u.setPassword("123456");
-//        u.setBirth(new Date());
-//        return u;
-//    }
-
-//    @ModelAttribute("u2")
-//    public void user(Model model) {
-//        System.out.println("init....");
-//        User u = new User();
-//        u.setName("周宏");
-//        u.setPassword("123");
-//        u.setBirth(new Date());
-//        model.addAttribute("u", u);
-//
-//    }
-
-    @RequestMapping(value = "/put", method = RequestMethod.PUT)
+    @RequestMapping("/checkName")
     @ResponseBody
-    public String put(User user) {
-        System.out.println(user.getName());
-        System.out.println(user.getPassword());
-        System.out.println(user.getBirth());
-        return "put";
-    }
-
-    @RequestMapping("/login")
-    public String login(Model model, @ModelAttribute User user) {
-        System.out.println("login");
-        System.out.println(user);
-//        System.out.println(model.containsAttribute("u"));
-//        System.out.println(model.containsAttribute("u2"));
-//        System.out.println(model.containsAttribute("user"));
-//        System.out.println(model.containsAttribute("afhh"));
-
-        return "msg";
+    public Map<String, Integer> checkName(@RequestBody User user) {
+        int code = ResponseCode.CAN_USE;
+        if (user.getName().equals("王菲")) {
+            code = ResponseCode.HAS_USED;
+        }
+        Map<String, Integer> map = new HashMap<>();
+        map.put("status", code);
+        return map;
     }
 }

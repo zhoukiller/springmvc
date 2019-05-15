@@ -43,6 +43,16 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:springmvc.xml</param-value>
         </init-param>
+        <!--        Servlet3文件上传组件配置    -->
+<!--        <multipart-config>-->
+<!--            <location>E:/</location>-->
+<!--            &lt;!&ndash;文件大小为2M&ndash;&gt;-->
+<!--            <max-file-size>20971520</max-file-size>-->
+<!--            &lt;!&ndash;整个请求不超过400M&ndash;&gt;-->
+<!--            <max-request-size>419430400</max-request-size>-->
+<!--            &lt;!&ndash;所有文件都要写入磁盘&ndash;&gt;-->
+<!--            <file-size-threshold>0</file-size-threshold>-->
+<!--        </multipart-config>-->
     </servlet>
 
     <servlet-mapping>
