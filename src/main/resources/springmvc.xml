@@ -46,8 +46,28 @@
         <property name="maxUploadSizePerFile" value="20971520"/>
     </bean>
 
-<!--    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>-->
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+        <!--
+            /*只能拦截一层
+            /**/*可以拦截任意层的方法
+        -->
+            <mvc:mapping path="/**/*"/>
+            <bean class="com.zh.interceptor.MethodTimeInterceptor"/>
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <!--
+                只想拦截/user/**/*
+                排除登录的URI
+            -->
+            <mvc:mapping path="/user/**/*"/>
+            <mvc:exclude-mapping path="/user/login"/>
+            <bean class="com.zh.interceptor.SessionInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
     <!--
         方法1.默认servlet处理静态资源放行
           同时需要配置annotation-driven，不然所有的请求都让它处理了
@@ -55,7 +75,5 @@
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
 
-    <!--    方法2. resource放行静态资源   -->
-<!--    <mvc:resources mapping="/static/css/*" location="static/css/"/>-->
 
 </beans>

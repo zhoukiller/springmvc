@@ -22,7 +22,8 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!--    注册一个前端控制器
+    <!--
+            注册一个前端控制器
             DispatcherServlet
     -->
     <servlet>
@@ -33,26 +34,11 @@
         -->
         <servlet-name>springmvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <!--        指定配置文件的名字   -->
-<!--        <init-param>-->
-<!--            <param-name>namespace</param-name>-->
-<!--            <param-value>mvc</param-value>-->
-<!--        </init-param>-->
         <!--        配置文件的位置     -->
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:springmvc.xml</param-value>
         </init-param>
-        <!--        Servlet3文件上传组件配置    -->
-<!--        <multipart-config>-->
-<!--            <location>E:/</location>-->
-<!--            &lt;!&ndash;文件大小为2M&ndash;&gt;-->
-<!--            <max-file-size>20971520</max-file-size>-->
-<!--            &lt;!&ndash;整个请求不超过400M&ndash;&gt;-->
-<!--            <max-request-size>419430400</max-request-size>-->
-<!--            &lt;!&ndash;所有文件都要写入磁盘&ndash;&gt;-->
-<!--            <file-size-threshold>0</file-size-threshold>-->
-<!--        </multipart-config>-->
     </servlet>
 
     <servlet-mapping>
@@ -61,27 +47,6 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!--    方法3. 配置静态资源     -->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>default</servlet-name>-->
-<!--        <url-pattern>*.html</url-pattern>-->
-<!--    </servlet-mapping>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>default</servlet-name>-->
-<!--        <url-pattern>*.jpg</url-pattern>-->
-<!--    </servlet-mapping>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>default</servlet-name>-->
-<!--        <url-pattern>*.png</url-pattern>-->
-<!--    </servlet-mapping>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>default</servlet-name>-->
-<!--        <url-pattern>*.css</url-pattern>-->
-<!--    </servlet-mapping>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>default</servlet-name>-->
-<!--        <url-pattern>*.js</url-pattern>-->
-<!--    </servlet-mapping>-->
 
 
 
